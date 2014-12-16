@@ -19,41 +19,42 @@ Or install it yourself as:
 ## Usage
 
 1. Create a `yml` file with the same file name as your class. For example:
-
-    ```ruby
-    class: A::B::C
-    file name: config/a/b/c.yml
-    ```
+```
+class: A::B::C
+file name: config/a/b/c.yml
+```
 
 2. Extend the Quandl::Configurable class. This adds a configuration class method.
+```ruby
+class A::B::C
+  extend Quandl::Configurable
+end
+```
 
-    ```ruby
-    class A::B::C
-      extend Quandl::Configurable
-    end
-    ```
+```ruby
+pry
+pry> A::B::C.configuration
+=> #<Quandl::Config language="spanish", hello="hola">
+```
 
-    ```ruby
-    pry
-    pry> A::B::C.configuration
-   => #<Quandl::Config language="spanish", hello="hola">
-    ```
+What if my yml file name doesn't match the class name?
 
-### What if my yml file name doesn't match the class name?
-    ```ruby
-    class A::B::Special
-      extend Quandl::Configurable
-
-      def self.file_name
-        'database_zip_uploader'
-      end
-    end
+```ruby
+class A::B::Special
+  extend Quandl::Configurable
+  def self.file_name
+    'database_zip_uploader'
+  end
+end
+```
 
 ### What if I want configuration to be an instance method?
-    ```ruby
-    class A::B::C
-      include Quandl::Configurable
-    end
+
+```ruby
+class A::B::C
+  include Quandl::Configurable
+end
+```
 
 ## Contributing
 
