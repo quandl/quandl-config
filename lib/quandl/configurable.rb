@@ -9,7 +9,7 @@ module Quandl
     private
 
     def file_name
-      name.underscore
+      defined?(name) ? name.underscore : self.class.name.underscore
     end
   end
 end
