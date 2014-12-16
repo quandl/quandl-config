@@ -37,7 +37,7 @@ pry> A::B::C.configuration
 => #<Quandl::Config language="spanish", hello="hola">
 ```
 
-What if my yml file name doesn't match the class name?
+### What if my yml file name doesn't match the class name?
 
 ```ruby
 class A::B::Special
