@@ -1,0 +1,6 @@
+LineLength:
+  Max: 150
+Documentation:
+  Enabled: false
+FileName:
+  Enabled: false

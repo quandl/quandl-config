@@ -1,4 +1,4 @@
-require "quandl_configuration/version"
+require 'quandl_configuration/version'
 
 module QuandlConfiguration
   # Your code goes here...
