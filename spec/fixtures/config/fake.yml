@@ -1,0 +1,41 @@
+defaults: &defaults
+  webhook_url: https://hooks.slack.com/services/fake/fake/fake
+  notifiers: &default_subclasses
+    asset_management:
+      channel: '#releases'
+      username: Next Asset Deployer
+      icon_emoji: airplane
+    stripe:
+      channel: '#stripe-testing'
+      username: stripe
+    ci:
+      channel: <%= ENV.fetch('SLACK_CHANNEL', "'#development'") %>
+
+development:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+jenkins:
+  <<: *defaults
+
+vagrant:
+  <<: *defaults
+
+vagrant_test:
+  <<: *defaults
+
+vagrant_staging:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  subclasses:
+    <<: *default_subclasses
+    stripe:
+      channel: '#stripe-events'
+      username: stripe
