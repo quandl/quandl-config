@@ -1,4 +1,4 @@
-# QuandlConfiguration
+# Quandl::Configuration
 
 TODO: Write a gem description
 

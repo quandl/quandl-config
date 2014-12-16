@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'quandl_configuration/version'
+require 'quandl/configuration/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'quandl_configuration'
-  spec.version       = QuandlConfiguration::VERSION
+  spec.version       = Quandl::Configuration::VERSION
   spec.authors       = ['Najwa Azer']
   spec.email         = ['najwa.azer@gmail.com']
   spec.summary       = 'TODO: Write a short summary. Required.'
