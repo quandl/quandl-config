@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Quandl::Config::VERSION
   spec.authors       = ['Najwa Azer']
   spec.email         = ['najwa.azer@gmail.com']
-  spec.summary       = 'TODO: Write a short summary. Required.'
-  spec.description   = 'TODO: Write a longer description. Optional.'
+  spec.summary       = 'Openstruct-based per-class configuration.'
+  spec.description   = 'Openstruct-based per-class configuration.'
   spec.homepage      = ''
   spec.license       = 'MIT'
 
