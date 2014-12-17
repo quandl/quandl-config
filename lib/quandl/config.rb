@@ -3,7 +3,7 @@ require 'yaml'
 
 module Quandl
   class Config < ::OpenStruct
-    VERSION = '0.0.2'
+    VERSION = '0.0.1'
 
     def initialize(file_name)
       raw_config = File.read(::Rails.root.join('config', "#{file_name}.yml"))

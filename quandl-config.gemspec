@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'quandl/config'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'quandl_config'
+  spec.name          = 'quandl-config'
   spec.version       = Quandl::Config::VERSION
   spec.authors       = ['Najwa Azer']
   spec.email         = ['najwa.azer@gmail.com']

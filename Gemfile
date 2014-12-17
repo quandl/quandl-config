@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in quandl_config.gemspec
+# Specify your gem's dependencies in quandl-config.gemspec
 gemspec

@@ -6,7 +6,7 @@ This gem allows you to quickly convert YML files into a `Config` object where th
 
 Add this line to your application's Gemfile:
 
-    gem 'quandl_config'
+    gem 'quandl-config'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install quandl_config
+    $ gem install quandl-config
 
 ## Usage
 
@@ -58,7 +58,7 @@ end
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/quandl_config/fork )
+1. Fork it ( https://github.com/[my-github-username]/quandl-config/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
