@@ -3,10 +3,10 @@ require 'yaml'
 
 module Quandl
   class Config < ::OpenStruct
-    VERSION = '0.0.1'
+    VERSION = '0.0.2'
 
     def initialize(file_name)
-      raw_config = File.read(Rails.root.join('config', "#{file_name}.yml"))
+      raw_config = File.read(::Rails.root.join('config', "#{file_name}.yml"))
       erb_config = ERB.new(raw_config).result
       config = YAML.load(erb_config)[Rails.env]
 
@@ -20,3 +20,5 @@ module Quandl
     end
   end
 end
+
+require 'quandl/configurable'
