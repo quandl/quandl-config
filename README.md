@@ -24,7 +24,7 @@ class: A::B::C
 file name: config/a/b/c.yml
 ```
 
-2. Extend the Quandl::Configurable class. This adds a configuration class method.
+2. Extend the `Quandl::Configurable` class. This adds a configuration class method.
 ```ruby
 class A::B::C
   extend Quandl::Configurable
@@ -55,6 +55,12 @@ class A::B::C
   include Quandl::Configurable
 end
 ```
+
+### What if my project is not a Rails app?
+
+That's ok. `Quandl::Config` will find your config file if it's in a `config` folder in the root of your app.
+
+If you want to provide the environment, use `ENV['RAILS_ENV']` or `ENV['RAKE_ENV']`. If you don't, the `default` environment will be assumed.
 
 ## Contributing
 

@@ -1,14 +1,15 @@
 require 'ostruct'
 require 'yaml'
+require 'quandl/project_root'
 
 module Quandl
   class Config < ::OpenStruct
-    VERSION = '0.0.1'
+    VERSION = '0.0.2'
 
     def initialize(file_name)
-      raw_config = File.read(::Rails.root.join('config', "#{file_name}.yml"))
+      raw_config = File.read(project_root.join('config', "#{file_name}.yml"))
       erb_config = ERB.new(raw_config).result
-      config = YAML.load(erb_config)[Rails.env]
+      config = YAML.load(erb_config)[project_environment]
 
       super(config)
     end
@@ -17,6 +18,16 @@ module Quandl
       setters_and_getters = methods - self.class.instance_methods
       getters = setters_and_getters.reject { |method| method =~ /=$/ }
       getters
+    end
+
+    private
+
+    def project_root
+      defined?(Rails) ? ::Rails.root : Pathname.new(ProjectRoot.root)
+    end
+
+    def project_environment
+      defined?(Rails) ? ::Rails.env : (ENV['RAILS_ENV'] || ENV('RAKE_ENV') || 'default')
     end
   end
 end
