@@ -4,7 +4,7 @@ require 'quandl/project_root'
 
 module Quandl
   class Config < ::OpenStruct
-    VERSION = '0.0.2'
+    VERSION = '0.0.3'
 
     def initialize(file_name)
       raw_config = File.read(project_root.join('config', "#{file_name}.yml"))
@@ -27,7 +27,7 @@ module Quandl
     end
 
     def project_environment
-      defined?(Rails) ? ::Rails.env : (ENV['RAILS_ENV'] || ENV('RAKE_ENV') || 'default')
+      defined?(Rails) ? ::Rails.env : (ENV['RAILS_ENV'] || ENV['RAKE_ENV'] || ENV['QUANDL_ENV'] || 'default')
     end
   end
 end
