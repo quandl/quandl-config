@@ -17,15 +17,15 @@ module Quandl
     def self.ascend_until
       fs = File::SEPARATOR
       escaped_slash = "\\#{fs}"
-      special = "_ESCAPED_SLASH_"
-      project_path = File.expand_path(".")
+      special = '_ESCAPED_SLASH_'
+      project_path = File.expand_path('.')
       parts = project_path.gsub(escaped_slash, special).squeeze(fs).split(fs).map do |x|
         x.gsub(special, escaped_slash)
       end
 
       until parts.empty?
         path = parts.join(fs)
-        path = fs if path == ""
+        path = fs if path == ''
         return path if yield(path)
         parts.pop
       end
