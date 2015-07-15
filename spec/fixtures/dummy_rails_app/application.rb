@@ -1,5 +1,5 @@
 Rails = Class.new do
-  require "#{File.dirname(__FILE__)}/dummy_app/fake"
+  require_relative 'fake'
 
   def self.root
     Pathname.new(File.dirname(__FILE__))
