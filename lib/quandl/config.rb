@@ -6,10 +6,13 @@ module Quandl
   class Config < ::OpenStruct
     VERSION = '0.0.3'
 
-    def initialize(file_name)
+    def initialize(file_name, options = {})
       raw_config = File.read(project_root.join('config', "#{file_name}.yml"))
       erb_config = ERB.new(raw_config).result
       config = YAML.load(erb_config)[project_environment]
+
+      @_root = options.delete(:root_path)
+      @_environment = options.delete(:environment)
 
       super(config)
     end
@@ -23,11 +26,11 @@ module Quandl
     private
 
     def project_root
-      defined?(Rails) ? ::Rails.root : Pathname.new(ProjectRoot.root)
+      @_root ||= defined?(Rails) ? ::Rails.root : Pathname.new(ProjectRoot.root)
     end
 
     def project_environment
-      defined?(Rails) ? ::Rails.env : (ENV['RAILS_ENV'] || ENV['RAKE_ENV'] || ENV['QUANDL_ENV'] || 'default')
+      @_environment ||= defined?(Rails) ? ::Rails.env : (ENV['RAILS_ENV'] || ENV['RAKE_ENV'] || ENV['QUANDL_ENV'] || 'default')
     end
   end
 end

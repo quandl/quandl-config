@@ -1,6 +1,11 @@
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
 LineLength:
   Max: 150
 Documentation:
   Enabled: false
 FileName:
   Enabled: false
+Metrics/MethodLength:
+  Max: 90
