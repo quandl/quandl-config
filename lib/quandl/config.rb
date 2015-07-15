@@ -4,7 +4,7 @@ require 'quandl/project_root'
 
 module Quandl
   class Config < ::OpenStruct
-    VERSION = '0.0.3'
+    VERSION = '0.0.4'
 
     def initialize(file_name, options = {})
       raw_config = File.read(project_root.join('config', "#{file_name}.yml"))
