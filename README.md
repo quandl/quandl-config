@@ -58,9 +58,39 @@ end
 
 ### What if my project is not a Rails app?
 
-That's ok. `Quandl::Config` will find your config file if it's in a `config` folder in the root of your app.
+That's ok. `Quandl::Config` will find your config file if it's in a `config` folder in the root of your app. See also the [How do I override default values?](#how-do-i-override-default-values) for more information.
 
-If you want to provide the environment, use `ENV['RAILS_ENV']` or `ENV['RAKE_ENV']`. If you don't, the `default` environment will be assumed.
+### How do I override default values?
+
+You can override default values by adding a `configuration_options` method to your class/instance. The options available to be overwritten are:
+
+* `root_path` - Override this when you want to change the default path to your configuration files root folder. (default: your project path)
+* `environment` - Override this when you are not using a rails project and don't set the environment via `ENV['RAILS_ENV']`
+
+```ruby
+class A::B::Special
+  extend Quandl::Configurable
+  
+  def self.configuration_options
+    {
+        root_path: Pathname.new('~/configs/my_project'),
+        environment: ENV['MY_PROJECT']
+    }
+  end
+end
+```
+
+## FAQ
+
+### My config file won't reload in development mode (Rails)
+
+quandl-config utilizes an internal caching schema to save previously loaded configurations so that they don't load twice. You may need to restart your server in certain cases depending on how quandl-config was used in your project.
+
+Additionally if you have `included` via `include Quandl::Configurable` you can use the following method to reset the internal config. This however will not work when `extending` the module.
+
+```ruby
+Quandl::Config.clear_internal_cache
+``` 
 
 ## Contributing
 

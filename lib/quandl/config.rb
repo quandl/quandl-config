@@ -1,20 +1,29 @@
 require 'ostruct'
 require 'yaml'
-require 'quandl/project_root'
+require 'active_support/inflector'
+require 'pathname'
+
+require_relative 'config/project_root'
+require_relative 'config/configurable'
 
 module Quandl
   class Config < ::OpenStruct
-    VERSION = '0.0.4'
+    # Optimize loading of configs multiple times by keeping a hash of already loaded configs.
+    def self.new(filename, options = {})
+      @_registered_configs ||= {}
+      return @_registered_configs[filename] if @_registered_configs.key?(filename)
+      @_registered_configs[filename] = super
+    end
+
+    def self.clear_internal_cache
+      @_registered_configs = {}
+    end
 
     def initialize(file_name, options = {})
-      raw_config = File.read(project_root.join('config', "#{file_name}.yml"))
-      erb_config = ERB.new(raw_config).result
-      config = YAML.load(erb_config)[project_environment]
-
       @_root = options.delete(:root_path)
       @_environment = options.delete(:environment)
 
-      super(config)
+      super(read_config(file_name))
     end
 
     def configurable_attributes
@@ -25,8 +34,14 @@ module Quandl
 
     private
 
+    def read_config(file_name)
+      raw_config = File.read(Pathname.new(project_root).join('config', "#{file_name}.yml"))
+      erb_config = ERB.new(raw_config).result
+      YAML.load(erb_config)[project_environment]
+    end
+
     def project_root
-      @_root ||= defined?(Rails) ? ::Rails.root : Pathname.new(ProjectRoot.root)
+      @_root ||= defined?(Rails) ? ::Rails.root : ProjectRoot.root
     end
 
     def project_environment
@@ -34,5 +49,3 @@ module Quandl
     end
   end
 end
-
-require 'quandl/configurable'
