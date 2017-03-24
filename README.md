@@ -1,4 +1,4 @@
-# Quandl::Config
+# Quandl::Config [![Build Status](https://travis-ci.org/quandl/quandl-config.svg?branch=master)](https://travis-ci.org/quandl/quandl-config)
 
 This gem allows you to quickly convert YML files into a `Config` object where the attributes can be accessed using dot, hash symbol or hash string notation.
 
